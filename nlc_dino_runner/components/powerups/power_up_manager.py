@@ -24,14 +24,12 @@ class PowerUpManager:
                 print("generating powerup")
                 self.when_appears = random.randint(self.when_appears + 200, 500 + self.when_appears)
                 self.power_ups.append(Shield())
-        return self.power_ups
 
     def update(self, points, game_speed, player):
         self.generate_power_ups(points)
         for power_up in self.power_ups:
             power_up.update(game_speed, self.power_ups)
             if player.dino_rect.colliderect(power_up.rect):
-                power_up.start_time = pygame.time.get_ticks ()
                 player.shield = True
                 player.show_text = True
                 player.type = power_up.type
