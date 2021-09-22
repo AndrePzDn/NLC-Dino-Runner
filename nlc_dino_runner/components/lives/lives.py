@@ -1,7 +1,7 @@
-from pygame.sprite import Sprite
 from nlc_dino_runner.utils.constants import HEART
 
-class Live(Sprite):
+
+class Live():
     def __init__(self, POS_X = 50):
         self.image = HEART
         self.rect = self.image.get_rect()

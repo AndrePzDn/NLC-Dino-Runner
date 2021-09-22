@@ -1,7 +1,7 @@
 from nlc_dino_runner.components.lives.lives import Live
 
 
-class LiveManager:
+class LivesManager:
 
     def __init__(self):
         self.lives = 4
