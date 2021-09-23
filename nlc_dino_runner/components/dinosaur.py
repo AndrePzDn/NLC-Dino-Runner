@@ -33,6 +33,7 @@ class Dinosaur(Sprite):
         self.type = DEFAULT_TYPE
         self.image = self.run_img[self.type][0]
         self.hammer_image = HAMMER
+        self.hammer_rect = self.hammer_image.get_rect()
         self.shield = False
         self.shield_time_up = 0
         self.show_text = False
@@ -71,7 +72,7 @@ class Dinosaur(Sprite):
             self.dino_duck = False
 
         if user_input[pygame.K_SPACE] and self.hammer_available:
-            self.hammer = Hammer(self.dino_rect.x, self.dino_rect.y)
+            self.hammer = Hammer(self.dino_rect.x + 100, self.dino_rect.y)
             self.reset_dinosaur()
 
         if self.hammer:
@@ -108,7 +109,7 @@ class Dinosaur(Sprite):
     def check_invincibility(self, screen):
         if self.shield:
             time_to_show = round((self.shield_time_up - pygame.time.get_ticks())/1000, 1)
-            if time_to_show < 0:
+            if time_to_show <= 0:
                 self.shield = False
                 if self.type == SHIELD_TYPE:
                     self.type = DEFAULT_TYPE
@@ -126,23 +127,6 @@ class Dinosaur(Sprite):
                         f'Invencibility enable for {time_to_show} seg',
                         width=500,
                         height=100,
-                        size=20
-                    )
-                    screen.blit(text, text_rect)
-
-    def check_hammer(self, screen):
-        if self.hammer_available:
-            time_to_show = round((self.hammer_time_up - pygame.time.get_ticks()) / 1000, 2)
-            if time_to_show < 0:
-                self.hammer_available = False
-                if self.type == HAMMER_TYPE:
-                    self.type = DEFAULT_TYPE
-            else:
-                if self.show_hammer_text and self.type == HAMMER_TYPE:
-                    text, text_rect = text_utils.get_centered_message(
-                        f'Hammer enabled for {time_to_show} seg',
-                        width=500,
-                        height=40,
                         size=20
                     )
                     screen.blit(text, text_rect)

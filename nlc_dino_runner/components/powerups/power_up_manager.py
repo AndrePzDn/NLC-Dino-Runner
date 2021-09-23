@@ -14,9 +14,9 @@ class PowerUpManager:
         self.points = 0
         self.option_numbers = list(range(1, 10))
 
-    def reset_power_ups(self, points):
+    def reset_power_ups(self):
         self.power_ups = []
-        self.points = points
+        self.points = 0
         self.when_appears = random.randint(200, 300) + self.points
 
     def generate_power_ups(self, points):
@@ -25,7 +25,7 @@ class PowerUpManager:
             if self.when_appears == self.points:
                 print("generating powerup")
                 self.when_appears = random.randint(self.when_appears + 200, 500 + self.when_appears)
-                if random.randint(0, 10) > 5:
+                if random.randint(0, 10) >= 5:
                     self.power_ups.append(Shield())
                 else:
                     self.power_ups.append(HammerPowerUp())

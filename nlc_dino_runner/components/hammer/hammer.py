@@ -1,5 +1,5 @@
 from pygame.sprite import Sprite
-from nlc_dino_runner.utils.constants import HAMMER
+from nlc_dino_runner.utils.constants import HAMMER, SCREEN_WIDTH
 
 
 class Hammer(Sprite):
@@ -14,7 +14,7 @@ class Hammer(Sprite):
 
     def update(self):
         self.rect.x += self.hammer_speed
-        if self.rect.x > self.rect.width:
+        if self.rect.x > SCREEN_WIDTH:
             self.kill()
 
     def draw(self, screen):

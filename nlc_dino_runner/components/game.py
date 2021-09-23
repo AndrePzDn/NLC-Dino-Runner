@@ -28,7 +28,7 @@ class Game:
 
     def run(self):
         self.obstacle_manager.reset_obstacles()
-        self.power_up_manager.reset_power_ups(self.points)
+        self.power_up_manager.reset_power_ups()
         self.lives_manager.reset_lives()
         self.player.reset_dinosaur()
         self.points = 0
