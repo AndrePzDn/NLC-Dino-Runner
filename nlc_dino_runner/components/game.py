@@ -30,6 +30,7 @@ class Game:
         self.obstacle_manager.reset_obstacles()
         self.power_up_manager.reset_power_ups(self.points)
         self.lives_manager.reset_lives()
+        self.player.reset_dinosaur()
         self.points = 0
         self.playing = True
         while self.playing:
@@ -105,7 +106,8 @@ class Game:
         half_screen_height = SCREEN_HEIGHT // 2
         text, text_rect = text_utils.get_centered_message('Press any key to Start')
         self.screen.blit(text, text_rect)
-        death_score, death_score_react = text_utils.get_centered_message('Death count: ' + str(self.death_count), height = half_screen_height + 50)
+        death_score, death_score_react = text_utils.get_centered_message(
+            'Death count: ' + str(self.death_count), height=half_screen_height + 50
+        )
         self.screen.blit(death_score, death_score_react)
         self.screen.blit(ICON, ((SCREEN_WIDTH // 2) - 40, (SCREEN_HEIGHT // 2) - 150))
-
