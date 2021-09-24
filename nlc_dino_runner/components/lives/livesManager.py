@@ -18,5 +18,3 @@ class LivesManager:
 
     def reset_lives(self):
         self.lives = 4
-
-

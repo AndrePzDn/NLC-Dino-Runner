@@ -1,11 +1,11 @@
 from nlc_dino_runner.utils.constants import HEART
 
 
-class Live():
-    def __init__(self, POS_X = 50):
+class Live:
+    def __init__(self, pos_x=50):
         self.image = HEART
         self.rect = self.image.get_rect()
-        self.rect.x = POS_X
+        self.rect.x = pos_x
         self.rect.y = 30
 
     def draw(self, screen):

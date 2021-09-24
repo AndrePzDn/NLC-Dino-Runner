@@ -1,7 +1,9 @@
 import pygame
-
+import random
+from nlc_dino_runner.components.obstacles.bird import Bird
 from nlc_dino_runner.components.obstacles.cactus import Cactus
-from nlc_dino_runner.utils.constants import SMALL_CACTUS, SHIELD_TYPE
+from nlc_dino_runner.components.obstacles.cactus_large import CactusLarge
+from nlc_dino_runner.utils.constants import SMALL_CACTUS, SHIELD_TYPE, BIRD, LARGE_CACTUS
 
 
 class ObstaclesManager:
@@ -11,7 +13,12 @@ class ObstaclesManager:
 
     def update(self, game):
         if len(self.obstacles_list) == 0:
-            self.obstacles_list.append(Cactus(SMALL_CACTUS))
+            if random.randint(0, 2) == 0:
+                self.obstacles_list.append(Cactus(SMALL_CACTUS))
+            elif random.randint(0, 2) == 1:
+                self.obstacles_list.append(Bird(BIRD))
+            elif random.randint(0, 2) == 2:
+                self.obstacles_list.append(CactusLarge(LARGE_CACTUS))
 
         for obstacle in self.obstacles_list:
             obstacle.update(game.game_speed, self.obstacles_list)
@@ -26,7 +33,7 @@ class ObstaclesManager:
                         game.player.shield = True
                         game.player.type = SHIELD_TYPE
                         start_time = pygame.time.get_ticks()
-                        game.player.shield_time_up = start_time + 1500
+                        game.player.shield_time_up = start_time + 2500
                     else:
                         pygame.time.delay(500)
                         game.playing = False
